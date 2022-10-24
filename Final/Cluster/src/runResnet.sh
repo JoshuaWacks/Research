@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=R_34
+#SBATCH --job-name=R_kfold
 #SBATCH --partition=batch
 #SBATCH --nodes=1
 #SBATCH --time=72:00:00
@@ -16,9 +16,9 @@ source ~/.bashrc
 cd ~/src/
 conda activate trainingEnv
 source ~/switch-cuda.sh 11.2
-echo "We are doing a job now,Resnet_34 with saving best weights"
+echo "We are doing a job now,resnet_kfold"
 pwd
-python resnet.py
+python resnet_kfold.py
 echo "------------------------------------------------------------------------"
 echo "Job ended on" `date`
 echo "------------------------------------------------------------------------"
