@@ -24,6 +24,7 @@ load_presaved_model = True
 dataset = 'FairFace'
 
 data_dir = os.path.join('~/Datasets',dataset)
+# data_dir = 'Z:\RR\Final\Datasets\FairFace'
 
 model_name = F'ResNet34_v1'#Alpha: 1e_3, Step_size: 100, before we decrease alpha
 
@@ -59,6 +60,7 @@ std = np.array([0.229, 0.224, 0.225])
 data_transforms = {
 	'train': transforms.Compose([ #compose several transforms together
 		# transforms.RandomResizedCrop(224),
+		transforms.Resize(256),
 		transforms.RandomHorizontalFlip(),
 		transforms.ToTensor()
 		# transforms.Normalize(mean, std)
@@ -159,7 +161,7 @@ def reset_weights(m):
 			# print(f'Reset trainable parameters of layer = {layer}')
 			layer.reset_parameters()
    
-def train(model, criterion, optimizer, scheduler,train_loader,val_loader,dataset_sizes,start_epoch, num_epochs,patience):
+def train(model, criterion, optimizer, scheduler,train_loader,val_loader,dataset_sizes,start_epoch, num_epochs):
 	since = time.time()
 	early_stopping = EarlyStopping()
 
@@ -217,8 +219,8 @@ def train(model, criterion, optimizer, scheduler,train_loader,val_loader,dataset
 			if phase == 'train':
 				scheduler.step()
 
-			epoch_loss = running_loss / dataset_sizes[phase]
-			epoch_acc = running_corrects.double() / dataset_sizes[phase]
+			epoch_loss = running_loss / dataset_sizes
+			epoch_acc = running_corrects.double() / dataset_sizes
 
 			print(f'{phase} Loss: {epoch_loss:.4f} Acc: {epoch_acc:.4f}')
    
@@ -242,9 +244,9 @@ def train(model, criterion, optimizer, scheduler,train_loader,val_loader,dataset
 				early_stopping.set_val_loss(epoch_loss)
 				early_stopping.check_early_stop()
 		
-				if early_stopping.early_stop:
-					print("Early stopping")
-					break
+		if early_stopping.early_stop:
+			print("Early stopping")
+			break
 
 		print()
 
@@ -265,34 +267,38 @@ def get_modal(class_names):
 	num_ftrs = model.fc.in_features
 
 	model.fc = nn.Linear(num_ftrs, len(class_names))
+ 
+	return model
 
 
 def k_fold( class_names,image_datasets,start_epoch, num_epochs,k_folds):
 	  # K-fold Cross Validation model evaluation
+
 	folds = KFold(n_splits=k_folds, shuffle=True)
-	for fold, (train_idx, val_idx) in enumerate(folds.split(image_datasets)):
-		dataset_train = torch.utils.data.Subset(image_datasets, train_idx)
-		dataset_valid = torch.utils.data.Subset(image_datasets, val_idx)
+
+	dataset= torch.utils.data.ConcatDataset([image_datasets['train'],image_datasets['val']])
+
+	for fold,(train_idx,val_idx) in enumerate(folds.split(dataset)):
+		print('------------fold no---------{}----------------------'.format(fold))
+
   
-		train_loader = torch.utils.data.DataLoader(dataset_train, batch_size=256, shuffle =True)
-		val_loader = torch.utils.data.DataLoader(dataset_valid, batch_size=256, shuffle = True)
-		dataset_size = len(dataset_valid)
-
-		# Sample elements randomly from a given list of ids, no replacement.
-		# train_subsampler = torch.utils.data.SubsetRandomSampler(train_idx)
-		# val_subsampler = torch.utils.data.SubsetRandomSampler(val_idx)
-
-		# # Define data loaders for training and testing data in this fold
-		# trainloader = torch.utils.data.DataLoader(
-		# 					dataset, 
-		# 					batch_size=256, sampler=train_subsampler)
-		# testloader = torch.utils.data.DataLoader(
-		# 					dataset,
-		# 					batch_size=256, sampler=val_subsampler)
+		train_subsampler = torch.utils.data.SubsetRandomSampler(train_idx)
+		val_subsampler = torch.utils.data.SubsetRandomSampler(val_idx)
+		
+		train_loader = torch.utils.data.DataLoader(
+							dataset, 
+							batch_size=batch_size, sampler=train_subsampler)
+		val_loader = torch.utils.data.DataLoader(
+							dataset,
+							batch_size=batch_size, sampler=val_subsampler)
+		dataset_size = len(val_loader) * batch_size
+  
 		model = get_modal(class_names)
 		optimizer = optim.SGD(model.parameters(), lr=lr, momentum=momentum)
 		exp_lr_scheduler = lr_scheduler.StepLR(optimizer, step_size=step_size, gamma= gamma)
 		criterion = nn.CrossEntropyLoss()
+		model = model.to(device)
+  
   
 		trained_model,time_elapsed,training_loss,training_acc,validation_loss,validation_acc = train(model, criterion, optimizer, exp_lr_scheduler,
 																					   train_loader,val_loader,dataset_size,
@@ -300,15 +306,13 @@ def k_fold( class_names,image_datasets,start_epoch, num_epochs,k_folds):
 
 		write_results(time_elapsed,training_loss,training_acc,validation_loss,validation_acc,k_folds,num_epochs)
   
-		print(F"Completed Fold {fold} of {k_folds}\n")
-  
 def init_training():
 	path = F'~/Results/{dataset}/results_{model_name}.csv'
-	open(os.path.expanduser(path),'x')
+	open(os.path.expanduser(path),'w+')
 	path = F'~/Results/{dataset}/time_results_{model_name}.csv'
-	open(os.path.expanduser(path),'x')
+	open(os.path.expanduser(path),'w+')
 	path = F'~/Results/{dataset}/hyperparameters_{model_name}.csv'
-	open(os.path.expanduser(path),'x')
+	open(os.path.expanduser(path),'w+')
 
 	#Ensuring the paths for saving modal progress are working
 
@@ -325,8 +329,6 @@ def init_training():
 	# 	model, optimizer, starting_epoch = load_checkpoint(model, optimizer, os.path.expanduser(model_save_path))
 	# else:
 	# 	open(os.path.expanduser(model_save_path),'w+')
-  
-	model = model.to(device)
 	write_hyperparameters()
 	
 	print('Training Started \n\n')
@@ -335,9 +337,9 @@ def init_training():
 		 	starting_epoch,max_epochs,k_folds)
  
    
-if __name__ == '__main__':
+# if __name__ == '__main__':
 	
 
-	init_training()
+init_training()
 
 	##########################################################---Initializing Model---######################################################################

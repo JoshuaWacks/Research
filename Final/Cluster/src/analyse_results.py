@@ -28,7 +28,7 @@ testing_dataset_path = os.path.join('~/Datasets/FairFace_Balanced_Age',testing_d
 training_csv_path = '~/processed_data/FairFace_train_val.csv'
 testing_csv_path = '~/processed_data/FairFace_test.csv'
 
-model_name= 'ResNet50_No_Normalizing_A_13_SS_25_batch_32_epochs_100'
+model_name= 'ResNet34_Best_Weights'
 weights_file = F'{model_name}.pt'
 model_path = os.path.join(os.path.join('~/Models',training_dataset),weights_file)
 
@@ -502,7 +502,7 @@ def obtain_ethnicity_results(model,class_names):
 
 save_training_graphs()
 
-# model,dataloaders_validation,dataloaders_testing,class_names = get_model_data()
-# print('Running Analysis')
-# obtain_overall_results(model,dataloaders_validation,dataloaders_testing)
-# obtain_ethnicity_results(model,class_names)
+model,dataloaders_validation,dataloaders_testing,class_names = get_model_data()
+print('Running Analysis')
+obtain_overall_results(model,dataloaders_validation,dataloaders_testing)
+obtain_ethnicity_results(model,class_names)

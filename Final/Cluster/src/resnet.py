@@ -222,9 +222,9 @@ def train_model(model, criterion, optimizer, scheduler,dataloaders,dataset_sizes
 				early_stopping.set_val_loss(epoch_loss)
 				early_stopping.check_early_stop()
 		
-				if early_stopping.early_stop:
-					print("Early Stopping")
-					break
+		if early_stopping.early_stop:
+			print("Early Stopping")
+			break
 
 
 		print()
