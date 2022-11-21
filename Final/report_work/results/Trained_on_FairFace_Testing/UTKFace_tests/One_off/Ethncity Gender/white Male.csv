@@ -1,0 +1,10 @@
+white Male accuracy,0.504017531044558
+white Male balanced_accuracy,0.537127621692505
+white Male precision_macro,0.5649100454421347
+white Male precision_weighted,0.5339748823529075
+white Male recall_macro,0.537127621692505
+white Male recall_weighted,0.504017531044558
+white Male f1_macro,0.5273593718019288
+white Male f1_weighted,0.5020129634712514
+white Male cohen_kappa,0.4247514493654144
+white Male matthews corrcoef,0.426232794883595

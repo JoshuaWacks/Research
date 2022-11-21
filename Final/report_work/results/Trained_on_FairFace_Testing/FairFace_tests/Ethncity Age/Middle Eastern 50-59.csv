@@ -1,0 +1,10 @@
+Middle Eastern 50-59 accuracy,0.40601503759398494
+Middle Eastern 50-59 balanced_accuracy,0.40601503759398494
+Middle Eastern 50-59 precision_macro,0.2
+Middle Eastern 50-59 precision_weighted,1.0
+Middle Eastern 50-59 recall_macro,0.08120300751879699
+Middle Eastern 50-59 recall_weighted,0.40601503759398494
+Middle Eastern 50-59 f1_macro,0.11550802139037433
+Middle Eastern 50-59 f1_weighted,0.5775401069518716
+Middle Eastern 50-59 cohen_kappa,0.0
+Middle Eastern 50-59 matthews corrcoef,0.0

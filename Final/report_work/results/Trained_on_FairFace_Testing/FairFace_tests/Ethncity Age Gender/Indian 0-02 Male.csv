@@ -1,0 +1,10 @@
+Indian 0-02 Male accuracy,0.7058823529411765
+Indian 0-02 Male balanced_accuracy,0.7058823529411765
+Indian 0-02 Male precision_macro,0.5
+Indian 0-02 Male precision_weighted,1.0
+Indian 0-02 Male recall_macro,0.35294117647058826
+Indian 0-02 Male recall_weighted,0.7058823529411765
+Indian 0-02 Male f1_macro,0.41379310344827586
+Indian 0-02 Male f1_weighted,0.8275862068965517
+Indian 0-02 Male cohen_kappa,0.0
+Indian 0-02 Male matthews corrcoef,0.0

@@ -1,0 +1,10 @@
+Latino_Hispanic Male accuracy,0.5772357723577236
+Latino_Hispanic Male balanced_accuracy,0.5494831179304035
+Latino_Hispanic Male precision_macro,0.5843643610828929
+Latino_Hispanic Male precision_weighted,0.5823720724554781
+Latino_Hispanic Male recall_macro,0.5494831179304035
+Latino_Hispanic Male recall_weighted,0.5772357723577236
+Latino_Hispanic Male f1_macro,0.5635534111313079
+Latino_Hispanic Male f1_weighted,0.5785652844772711
+Latino_Hispanic Male cohen_kappa,0.4877493147921833
+Latino_Hispanic Male matthews corrcoef,0.4880478950979813

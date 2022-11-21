@@ -1,0 +1,10 @@
+Middle Eastern 0-02 accuracy,0.5909090909090909
+Middle Eastern 0-02 balanced_accuracy,0.5909090909090909
+Middle Eastern 0-02 precision_macro,0.5
+Middle Eastern 0-02 precision_weighted,1.0
+Middle Eastern 0-02 recall_macro,0.29545454545454547
+Middle Eastern 0-02 recall_weighted,0.5909090909090909
+Middle Eastern 0-02 f1_macro,0.37142857142857144
+Middle Eastern 0-02 f1_weighted,0.7428571428571428
+Middle Eastern 0-02 cohen_kappa,0.0
+Middle Eastern 0-02 matthews corrcoef,0.0

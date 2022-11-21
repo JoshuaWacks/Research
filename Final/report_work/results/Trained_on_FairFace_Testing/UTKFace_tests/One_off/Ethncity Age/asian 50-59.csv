@@ -1,0 +1,10 @@
+asian 50-59 accuracy,0.4017857142857143
+asian 50-59 balanced_accuracy,0.4017857142857143
+asian 50-59 precision_macro,0.25
+asian 50-59 precision_weighted,1.0
+asian 50-59 recall_macro,0.10044642857142858
+asian 50-59 recall_weighted,0.4017857142857143
+asian 50-59 f1_macro,0.14331210191082802
+asian 50-59 f1_weighted,0.5732484076433121
+asian 50-59 cohen_kappa,0.0
+asian 50-59 matthews corrcoef,0.0

@@ -1,0 +1,10 @@
+White more_than_70 Male accuracy,0.10526315789473684
+White more_than_70 Male balanced_accuracy,0.10526315789473684
+White more_than_70 Male precision_macro,0.25
+White more_than_70 Male precision_weighted,1.0
+White more_than_70 Male recall_macro,0.02631578947368421
+White more_than_70 Male recall_weighted,0.10526315789473684
+White more_than_70 Male f1_macro,0.04761904761904762
+White more_than_70 Male f1_weighted,0.1904761904761905
+White more_than_70 Male cohen_kappa,0.0
+White more_than_70 Male matthews corrcoef,0.0

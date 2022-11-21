@@ -1,0 +1,10 @@
+Middle Eastern 40-49 Male accuracy,0.5024630541871922
+Middle Eastern 40-49 Male balanced_accuracy,0.5024630541871922
+Middle Eastern 40-49 Male precision_macro,0.2
+Middle Eastern 40-49 Male precision_weighted,1.0
+Middle Eastern 40-49 Male recall_macro,0.10049261083743843
+Middle Eastern 40-49 Male recall_weighted,0.5024630541871922
+Middle Eastern 40-49 Male f1_macro,0.13377049180327868
+Middle Eastern 40-49 Male f1_weighted,0.6688524590163935
+Middle Eastern 40-49 Male cohen_kappa,0.0
+Middle Eastern 40-49 Male matthews corrcoef,0.0

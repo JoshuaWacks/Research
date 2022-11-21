@@ -1,0 +1,10 @@
+East Asian 0-02 accuracy,0.684931506849315
+East Asian 0-02 balanced_accuracy,0.684931506849315
+East Asian 0-02 precision_macro,0.5
+East Asian 0-02 precision_weighted,1.0
+East Asian 0-02 recall_macro,0.3424657534246575
+East Asian 0-02 recall_weighted,0.684931506849315
+East Asian 0-02 f1_macro,0.40650406504065034
+East Asian 0-02 f1_weighted,0.8130081300813007
+East Asian 0-02 cohen_kappa,0.0
+East Asian 0-02 matthews corrcoef,0.0

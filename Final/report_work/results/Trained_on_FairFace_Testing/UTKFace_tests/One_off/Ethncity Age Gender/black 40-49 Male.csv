@@ -1,0 +1,10 @@
+black 40-49 Male accuracy,0.375
+black 40-49 Male balanced_accuracy,0.375
+black 40-49 Male precision_macro,0.2
+black 40-49 Male precision_weighted,1.0
+black 40-49 Male recall_macro,0.075
+black 40-49 Male recall_weighted,0.375
+black 40-49 Male f1_macro,0.10909090909090909
+black 40-49 Male f1_weighted,0.5454545454545454
+black 40-49 Male cohen_kappa,0.0
+black 40-49 Male matthews corrcoef,0.0

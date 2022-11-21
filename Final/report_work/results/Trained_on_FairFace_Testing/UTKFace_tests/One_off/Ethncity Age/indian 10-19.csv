@@ -1,0 +1,10 @@
+indian 10-19 accuracy,0.43884892086330934
+indian 10-19 balanced_accuracy,0.43884892086330934
+indian 10-19 precision_macro,0.25
+indian 10-19 precision_weighted,1.0
+indian 10-19 recall_macro,0.10971223021582734
+indian 10-19 recall_weighted,0.43884892086330934
+indian 10-19 f1_macro,0.1525
+indian 10-19 f1_weighted,0.61
+indian 10-19 cohen_kappa,0.0
+indian 10-19 matthews corrcoef,0.0

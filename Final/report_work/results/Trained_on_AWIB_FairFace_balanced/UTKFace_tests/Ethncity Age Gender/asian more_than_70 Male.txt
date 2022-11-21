@@ -1,0 +1,18 @@
++--------------------------------------------+----------------------------+
+| Metric                                     | Result                     |
++--------------------------------------------+----------------------------+
+| asian more_than_70 Male accuracy           | 0.34710743801652894        |
+| asian more_than_70 Male balanced_accuracy  | 0.34710743801652894        |
+| __________________________                 | __________________________ |
+| asian more_than_70 Male precision_macro    | 0.16666666666666666        |
+| asian more_than_70 Male precision_weighted | 1.0                        |
+| __________________________                 | __________________________ |
+| asian more_than_70 Male recall_macro       | 0.05785123966942149        |
+| asian more_than_70 Male recall_weighted    | 0.34710743801652894        |
+| __________________________                 | __________________________ |
+| asian more_than_70 Male f1_macro           | 0.08588957055214724        |
+| asian more_than_70 Male f1_weighted        | 0.5153374233128835         |
+| __________________________                 | __________________________ |
+| asian more_than_70 Male cohen_kappa        | 0.0                        |
+| asian more_than_70 Male matthews corrcoef  | 0.0                        |
++--------------------------------------------+----------------------------+

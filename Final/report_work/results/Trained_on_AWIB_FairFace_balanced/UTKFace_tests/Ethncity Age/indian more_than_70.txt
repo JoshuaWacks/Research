@@ -1,0 +1,18 @@
++----------------------------------------+----------------------------+
+| Metric                                 | Result                     |
++----------------------------------------+----------------------------+
+| indian more_than_70 accuracy           | 0.24                       |
+| indian more_than_70 balanced_accuracy  | 0.24                       |
+| __________________________             | __________________________ |
+| indian more_than_70 precision_macro    | 0.25                       |
+| indian more_than_70 precision_weighted | 1.0                        |
+| __________________________             | __________________________ |
+| indian more_than_70 recall_macro       | 0.06                       |
+| indian more_than_70 recall_weighted    | 0.24                       |
+| __________________________             | __________________________ |
+| indian more_than_70 f1_macro           | 0.0967741935483871         |
+| indian more_than_70 f1_weighted        | 0.3870967741935484         |
+| __________________________             | __________________________ |
+| indian more_than_70 cohen_kappa        | 0.0                        |
+| indian more_than_70 matthews corrcoef  | 0.0                        |
++----------------------------------------+----------------------------+

@@ -1,0 +1,10 @@
+East Asian more_than_70 Female accuracy,0.25
+East Asian more_than_70 Female balanced_accuracy,0.25
+East Asian more_than_70 Female precision_macro,0.3333333333333333
+East Asian more_than_70 Female precision_weighted,1.0
+East Asian more_than_70 Female recall_macro,0.08333333333333333
+East Asian more_than_70 Female recall_weighted,0.25
+East Asian more_than_70 Female f1_macro,0.13333333333333333
+East Asian more_than_70 Female f1_weighted,0.4
+East Asian more_than_70 Female cohen_kappa,0.0
+East Asian more_than_70 Female matthews corrcoef,0.0

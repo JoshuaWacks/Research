@@ -1,0 +1,18 @@
++--------------------------------------------+----------------------------+
+| Metric                                     | Result                     |
++--------------------------------------------+----------------------------+
+| white more_than_70 Male accuracy           | 0.22587719298245615        |
+| white more_than_70 Male balanced_accuracy  | 0.22587719298245615        |
+| __________________________                 | __________________________ |
+| white more_than_70 Male precision_macro    | 0.14285714285714285        |
+| white more_than_70 Male precision_weighted | 1.0                        |
+| __________________________                 | __________________________ |
+| white more_than_70 Male recall_macro       | 0.03226817042606516        |
+| white more_than_70 Male recall_weighted    | 0.22587719298245615        |
+| __________________________                 | __________________________ |
+| white more_than_70 Male f1_macro           | 0.05264502938921544        |
+| white more_than_70 Male f1_weighted        | 0.3685152057245081         |
+| __________________________                 | __________________________ |
+| white more_than_70 Male cohen_kappa        | 0.0                        |
+| white more_than_70 Male matthews corrcoef  | 0.0                        |
++--------------------------------------------+----------------------------+

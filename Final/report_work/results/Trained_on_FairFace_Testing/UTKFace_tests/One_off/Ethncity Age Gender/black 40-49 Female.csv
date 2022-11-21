@@ -1,0 +1,10 @@
+black 40-49 Female accuracy,0.1407766990291262
+black 40-49 Female balanced_accuracy,0.1407766990291262
+black 40-49 Female precision_macro,0.2
+black 40-49 Female precision_weighted,1.0
+black 40-49 Female recall_macro,0.02815533980582524
+black 40-49 Female recall_weighted,0.1407766990291262
+black 40-49 Female f1_macro,0.04936170212765957
+black 40-49 Female f1_weighted,0.24680851063829787
+black 40-49 Female cohen_kappa,0.0
+black 40-49 Female matthews corrcoef,0.0

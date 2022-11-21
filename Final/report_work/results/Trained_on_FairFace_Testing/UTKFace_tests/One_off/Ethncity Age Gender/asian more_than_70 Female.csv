@@ -1,0 +1,10 @@
+asian more_than_70 Female accuracy,0.6521739130434783
+asian more_than_70 Female balanced_accuracy,0.6521739130434783
+asian more_than_70 Female precision_macro,0.2
+asian more_than_70 Female precision_weighted,1.0
+asian more_than_70 Female recall_macro,0.13043478260869565
+asian more_than_70 Female recall_weighted,0.6521739130434783
+asian more_than_70 Female f1_macro,0.15789473684210525
+asian more_than_70 Female f1_weighted,0.7894736842105263
+asian more_than_70 Female cohen_kappa,0.0
+asian more_than_70 Female matthews corrcoef,0.0

@@ -1,0 +1,10 @@
+East Asian 03-09 Female accuracy,0.8425925925925926
+East Asian 03-09 Female balanced_accuracy,0.8425925925925926
+East Asian 03-09 Female precision_macro,0.25
+East Asian 03-09 Female precision_weighted,1.0
+East Asian 03-09 Female recall_macro,0.21064814814814814
+East Asian 03-09 Female recall_weighted,0.8425925925925926
+East Asian 03-09 Female f1_macro,0.228643216080402
+East Asian 03-09 Female f1_weighted,0.914572864321608
+East Asian 03-09 Female cohen_kappa,0.0
+East Asian 03-09 Female matthews corrcoef,0.0

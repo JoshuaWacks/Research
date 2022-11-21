@@ -1,0 +1,10 @@
+indian Male accuracy,0.5227775320654577
+indian Male balanced_accuracy,0.5220920481387136
+indian Male precision_macro,0.5878671945033506
+indian Male precision_weighted,0.5590383188686345
+indian Male recall_macro,0.5220920481387136
+indian Male recall_weighted,0.5227775320654577
+indian Male f1_macro,0.5311907906416692
+indian Male f1_weighted,0.5291172111159282
+indian Male cohen_kappa,0.42334734849630884
+indian Male matthews corrcoef,0.42671959739928145

@@ -1,0 +1,10 @@
+white Female accuracy,0.4814170832427733
+white Female balanced_accuracy,0.47783827747570107
+white Female precision_macro,0.5116840460996716
+white Female precision_weighted,0.5174108621541346
+white Female recall_macro,0.47783827747570107
+white Female recall_weighted,0.4814170832427733
+white Female f1_macro,0.4699339134261391
+white Female f1_weighted,0.47383029014010714
+white Female cohen_kappa,0.39431089590183865
+white Female matthews corrcoef,0.398871645878591

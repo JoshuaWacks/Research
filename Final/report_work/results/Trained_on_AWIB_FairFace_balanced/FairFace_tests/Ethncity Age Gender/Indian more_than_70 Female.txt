@@ -1,0 +1,18 @@
++-----------------------------------------------+----------------------------+
+| Metric                                        | Result                     |
++-----------------------------------------------+----------------------------+
+| Indian more_than_70 Female accuracy           | 0.6                        |
+| Indian more_than_70 Female balanced_accuracy  | 0.6                        |
+| __________________________                    | __________________________ |
+| Indian more_than_70 Female precision_macro    | 0.3333333333333333         |
+| Indian more_than_70 Female precision_weighted | 1.0                        |
+| __________________________                    | __________________________ |
+| Indian more_than_70 Female recall_macro       | 0.19999999999999998        |
+| Indian more_than_70 Female recall_weighted    | 0.6                        |
+| __________________________                    | __________________________ |
+| Indian more_than_70 Female f1_macro           | 0.24999999999999997        |
+| Indian more_than_70 Female f1_weighted        | 0.7499999999999999         |
+| __________________________                    | __________________________ |
+| Indian more_than_70 Female cohen_kappa        | 0.0                        |
+| Indian more_than_70 Female matthews corrcoef  | 0.0                        |
++-----------------------------------------------+----------------------------+

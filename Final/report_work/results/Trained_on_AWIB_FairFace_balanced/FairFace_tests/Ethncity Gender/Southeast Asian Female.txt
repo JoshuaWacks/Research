@@ -1,0 +1,18 @@
++-------------------------------------------+----------------------------+
+| Metric                                    | Result                     |
++-------------------------------------------+----------------------------+
+| Southeast Asian Female accuracy           | 0.5914489311163895         |
+| Southeast Asian Female balanced_accuracy  | 0.5033053542008431         |
+| __________________________                | __________________________ |
+| Southeast Asian Female precision_macro    | 0.6302864209718059         |
+| Southeast Asian Female precision_weighted | 0.600820639035057          |
+| __________________________                | __________________________ |
+| Southeast Asian Female recall_macro       | 0.5033053542008431         |
+| Southeast Asian Female recall_weighted    | 0.5914489311163895         |
+| __________________________                | __________________________ |
+| Southeast Asian Female f1_macro           | 0.53441210958975           |
+| Southeast Asian Female f1_weighted        | 0.5898439201237354         |
+| __________________________                | __________________________ |
+| Southeast Asian Female cohen_kappa        | 0.4858572034627885         |
+| Southeast Asian Female matthews corrcoef  | 0.48641163052401604        |
++-------------------------------------------+----------------------------+

@@ -1,0 +1,18 @@
++------------------------------------------+----------------------------+
+| Metric                                   | Result                     |
++------------------------------------------+----------------------------+
+| Middle Eastern Female accuracy           | 0.5400410677618069         |
+| Middle Eastern Female balanced_accuracy  | 0.42010262993594033        |
+| __________________________               | __________________________ |
+| Middle Eastern Female precision_macro    | 0.5656989889150231         |
+| Middle Eastern Female precision_weighted | 0.5296787864896789         |
+| __________________________               | __________________________ |
+| Middle Eastern Female recall_macro       | 0.42010262993594033        |
+| Middle Eastern Female recall_weighted    | 0.5400410677618069         |
+| __________________________               | __________________________ |
+| Middle Eastern Female f1_macro           | 0.4533325016376475         |
+| Middle Eastern Female f1_weighted        | 0.5220593589901481         |
+| __________________________               | __________________________ |
+| Middle Eastern Female cohen_kappa        | 0.3936490114446748         |
+| Middle Eastern Female matthews corrcoef  | 0.39751537044001484        |
++------------------------------------------+----------------------------+

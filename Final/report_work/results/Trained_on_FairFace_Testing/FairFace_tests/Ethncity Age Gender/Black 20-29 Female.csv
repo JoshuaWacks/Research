@@ -1,0 +1,10 @@
+Black 20-29 Female accuracy,0.5618374558303887
+Black 20-29 Female balanced_accuracy,0.5618374558303887
+Black 20-29 Female precision_macro,0.2
+Black 20-29 Female precision_weighted,1.0
+Black 20-29 Female recall_macro,0.11236749116607773
+Black 20-29 Female recall_weighted,0.5618374558303887
+Black 20-29 Female f1_macro,0.14389140271493212
+Black 20-29 Female f1_weighted,0.7194570135746606
+Black 20-29 Female cohen_kappa,0.0
+Black 20-29 Female matthews corrcoef,0.0

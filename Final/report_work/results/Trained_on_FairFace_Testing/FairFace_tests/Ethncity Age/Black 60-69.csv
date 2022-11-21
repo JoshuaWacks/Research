@@ -1,0 +1,10 @@
+Black 60-69 accuracy,0.36538461538461536
+Black 60-69 balanced_accuracy,0.36538461538461536
+Black 60-69 precision_macro,0.16666666666666666
+Black 60-69 precision_weighted,1.0
+Black 60-69 recall_macro,0.060897435897435896
+Black 60-69 recall_weighted,0.36538461538461536
+Black 60-69 f1_macro,0.0892018779342723
+Black 60-69 f1_weighted,0.5352112676056338
+Black 60-69 cohen_kappa,0.0
+Black 60-69 matthews corrcoef,0.0

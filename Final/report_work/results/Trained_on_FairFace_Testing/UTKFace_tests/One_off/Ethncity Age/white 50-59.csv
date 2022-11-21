@@ -1,0 +1,10 @@
+white 50-59 accuracy,0.4
+white 50-59 balanced_accuracy,0.4
+white 50-59 precision_macro,0.125
+white 50-59 precision_weighted,1.0
+white 50-59 recall_macro,0.05
+white 50-59 recall_weighted,0.4
+white 50-59 f1_macro,0.07142857142857144
+white 50-59 f1_weighted,0.5714285714285715
+white 50-59 cohen_kappa,0.0
+white 50-59 matthews corrcoef,0.0

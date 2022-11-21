@@ -1,0 +1,10 @@
+asian 0-02 Male accuracy,0.901060070671378
+asian 0-02 Male balanced_accuracy,0.901060070671378
+asian 0-02 Male precision_macro,0.3333333333333333
+asian 0-02 Male precision_weighted,1.0
+asian 0-02 Male recall_macro,0.30035335689045933
+asian 0-02 Male recall_weighted,0.901060070671378
+asian 0-02 Male f1_macro,0.3159851301115241
+asian 0-02 Male f1_weighted,0.9479553903345724
+asian 0-02 Male cohen_kappa,0.0
+asian 0-02 Male matthews corrcoef,0.0

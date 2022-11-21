@@ -1,0 +1,10 @@
+asian Female accuracy,0.644468313641246
+asian Female balanced_accuracy,0.46865985188421316
+asian Female precision_macro,0.5130479002020066
+asian Female precision_weighted,0.6867533223814027
+asian Female recall_macro,0.46865985188421316
+asian Female recall_weighted,0.644468313641246
+asian Female f1_macro,0.4552211134395194
+asian Female f1_weighted,0.6430054883922823
+asian Female cohen_kappa,0.4896864536171932
+asian Female matthews corrcoef,0.4974714007470393

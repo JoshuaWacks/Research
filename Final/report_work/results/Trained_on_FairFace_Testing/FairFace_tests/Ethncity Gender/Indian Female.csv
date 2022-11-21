@@ -1,0 +1,10 @@
+Indian Female accuracy,0.5763397371081901
+Indian Female balanced_accuracy,0.5390360940665351
+Indian Female precision_macro,0.5949132559432756
+Indian Female precision_weighted,0.5715075140490437
+Indian Female recall_macro,0.5390360940665351
+Indian Female recall_weighted,0.5763397371081901
+Indian Female f1_macro,0.5600432970990804
+Indian Female f1_weighted,0.5709807272958152
+Indian Female cohen_kappa,0.48292840574031803
+Indian Female matthews corrcoef,0.48406049634019976

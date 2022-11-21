@@ -1,0 +1,10 @@
+Latino_Hispanic more_than_70 accuracy,0.38461538461538464
+Latino_Hispanic more_than_70 balanced_accuracy,0.38461538461538464
+Latino_Hispanic more_than_70 precision_macro,0.3333333333333333
+Latino_Hispanic more_than_70 precision_weighted,1.0
+Latino_Hispanic more_than_70 recall_macro,0.12820512820512822
+Latino_Hispanic more_than_70 recall_weighted,0.38461538461538464
+Latino_Hispanic more_than_70 f1_macro,0.1851851851851852
+Latino_Hispanic more_than_70 f1_weighted,0.5555555555555556
+Latino_Hispanic more_than_70 cohen_kappa,0.0
+Latino_Hispanic more_than_70 matthews corrcoef,0.0

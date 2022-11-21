@@ -1,0 +1,18 @@
++----------------------------------------------+----------------------------+
+| Metric                                       | Result                     |
++----------------------------------------------+----------------------------+
+| Middle Eastern 60-69 Male accuracy           | 0.3333333333333333         |
+| Middle Eastern 60-69 Male balanced_accuracy  | 0.3333333333333333         |
+| __________________________                   | __________________________ |
+| Middle Eastern 60-69 Male precision_macro    | 0.2                        |
+| Middle Eastern 60-69 Male precision_weighted | 1.0                        |
+| __________________________                   | __________________________ |
+| Middle Eastern 60-69 Male recall_macro       | 0.06666666666666667        |
+| Middle Eastern 60-69 Male recall_weighted    | 0.3333333333333333         |
+| __________________________                   | __________________________ |
+| Middle Eastern 60-69 Male f1_macro           | 0.1                        |
+| Middle Eastern 60-69 Male f1_weighted        | 0.5                        |
+| __________________________                   | __________________________ |
+| Middle Eastern 60-69 Male cohen_kappa        | 0.0                        |
+| Middle Eastern 60-69 Male matthews corrcoef  | 0.0                        |
++----------------------------------------------+----------------------------+

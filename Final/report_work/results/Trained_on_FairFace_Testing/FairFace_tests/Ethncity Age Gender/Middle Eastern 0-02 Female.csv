@@ -1,0 +1,10 @@
+Middle Eastern 0-02 Female accuracy,0.42857142857142855
+Middle Eastern 0-02 Female balanced_accuracy,0.42857142857142855
+Middle Eastern 0-02 Female precision_macro,0.5
+Middle Eastern 0-02 Female precision_weighted,1.0
+Middle Eastern 0-02 Female recall_macro,0.21428571428571427
+Middle Eastern 0-02 Female recall_weighted,0.42857142857142855
+Middle Eastern 0-02 Female f1_macro,0.3
+Middle Eastern 0-02 Female f1_weighted,0.6
+Middle Eastern 0-02 Female cohen_kappa,0.0
+Middle Eastern 0-02 Female matthews corrcoef,0.0

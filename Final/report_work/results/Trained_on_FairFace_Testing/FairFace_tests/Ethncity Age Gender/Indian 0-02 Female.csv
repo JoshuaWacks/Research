@@ -1,0 +1,10 @@
+Indian 0-02 Female accuracy,0.6666666666666666
+Indian 0-02 Female balanced_accuracy,0.6666666666666666
+Indian 0-02 Female precision_macro,0.3333333333333333
+Indian 0-02 Female precision_weighted,1.0
+Indian 0-02 Female recall_macro,0.2222222222222222
+Indian 0-02 Female recall_weighted,0.6666666666666666
+Indian 0-02 Female f1_macro,0.26666666666666666
+Indian 0-02 Female f1_weighted,0.8
+Indian 0-02 Female cohen_kappa,0.0
+Indian 0-02 Female matthews corrcoef,0.0

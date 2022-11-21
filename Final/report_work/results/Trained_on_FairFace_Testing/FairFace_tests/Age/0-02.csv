@@ -1,0 +1,10 @@
+0-02 accuracy,0.7003484320557491
+0-02 balanced_accuracy,0.7003484320557491
+0-02 precision_macro,0.2
+0-02 precision_weighted,1.0
+0-02 recall_macro,0.14006968641114984
+0-02 recall_weighted,0.7003484320557491
+0-02 f1_macro,0.16475409836065574
+0-02 f1_weighted,0.8237704918032787
+0-02 cohen_kappa,0.0
+0-02 matthews corrcoef,0.0

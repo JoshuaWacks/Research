@@ -1,0 +1,18 @@
++-------------------------------------------+----------------------------+
+| Metric                                    | Result                     |
++-------------------------------------------+----------------------------+
+| East Asian 0-02 Female accuracy           | 0.25                       |
+| East Asian 0-02 Female balanced_accuracy  | 0.25                       |
+| __________________________                | __________________________ |
+| East Asian 0-02 Female precision_macro    | 0.5                        |
+| East Asian 0-02 Female precision_weighted | 1.0                        |
+| __________________________                | __________________________ |
+| East Asian 0-02 Female recall_macro       | 0.125                      |
+| East Asian 0-02 Female recall_weighted    | 0.25                       |
+| __________________________                | __________________________ |
+| East Asian 0-02 Female f1_macro           | 0.2                        |
+| East Asian 0-02 Female f1_weighted        | 0.4                        |
+| __________________________                | __________________________ |
+| East Asian 0-02 Female cohen_kappa        | 0.0                        |
+| East Asian 0-02 Female matthews corrcoef  | 0.0                        |
++-------------------------------------------+----------------------------+

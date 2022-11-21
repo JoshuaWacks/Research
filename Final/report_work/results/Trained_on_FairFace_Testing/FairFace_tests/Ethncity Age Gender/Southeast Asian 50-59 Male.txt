@@ -1,0 +1,18 @@
++-----------------------------------------------+----------------------------+
+| Metric                                        | Result                     |
++-----------------------------------------------+----------------------------+
+| Southeast Asian 50-59 Male accuracy           | 0.3170731707317073         |
+| Southeast Asian 50-59 Male balanced_accuracy  | 0.3170731707317073         |
+| __________________________                    | __________________________ |
+| Southeast Asian 50-59 Male precision_macro    | 0.2                        |
+| Southeast Asian 50-59 Male precision_weighted | 1.0                        |
+| __________________________                    | __________________________ |
+| Southeast Asian 50-59 Male recall_macro       | 0.06341463414634146        |
+| Southeast Asian 50-59 Male recall_weighted    | 0.3170731707317073         |
+| __________________________                    | __________________________ |
+| Southeast Asian 50-59 Male f1_macro           | 0.0962962962962963         |
+| Southeast Asian 50-59 Male f1_weighted        | 0.48148148148148145        |
+| __________________________                    | __________________________ |
+| Southeast Asian 50-59 Male cohen_kappa        | 0.0                        |
+| Southeast Asian 50-59 Male matthews corrcoef  | 0.0                        |
++-----------------------------------------------+----------------------------+

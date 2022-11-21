@@ -1,0 +1,18 @@
++-----------------------------------------------+----------------------------+
+| Metric                                        | Result                     |
++-----------------------------------------------+----------------------------+
+| Latino_Hispanic 10-19 Male accuracy           | 0.46715328467153283        |
+| Latino_Hispanic 10-19 Male balanced_accuracy  | 0.46715328467153283        |
+| __________________________                    | __________________________ |
+| Latino_Hispanic 10-19 Male precision_macro    | 0.2                        |
+| Latino_Hispanic 10-19 Male precision_weighted | 1.0                        |
+| __________________________                    | __________________________ |
+| Latino_Hispanic 10-19 Male recall_macro       | 0.09343065693430656        |
+| Latino_Hispanic 10-19 Male recall_weighted    | 0.46715328467153283        |
+| __________________________                    | __________________________ |
+| Latino_Hispanic 10-19 Male f1_macro           | 0.12736318407960198        |
+| Latino_Hispanic 10-19 Male f1_weighted        | 0.6368159203980099         |
+| __________________________                    | __________________________ |
+| Latino_Hispanic 10-19 Male cohen_kappa        | 0.0                        |
+| Latino_Hispanic 10-19 Male matthews corrcoef  | 0.0                        |
++-----------------------------------------------+----------------------------+

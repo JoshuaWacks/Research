@@ -1,0 +1,10 @@
+East Asian 40-49 accuracy,0.33136094674556216
+East Asian 40-49 balanced_accuracy,0.33136094674556216
+East Asian 40-49 precision_macro,0.14285714285714285
+East Asian 40-49 precision_weighted,1.0
+East Asian 40-49 recall_macro,0.04733727810650888
+East Asian 40-49 recall_weighted,0.33136094674556216
+East Asian 40-49 f1_macro,0.07111111111111112
+East Asian 40-49 f1_weighted,0.4977777777777779
+East Asian 40-49 cohen_kappa,0.0
+East Asian 40-49 matthews corrcoef,0.0

@@ -1,0 +1,10 @@
+asian accuracy,0.6060517893511783
+asian balanced_accuracy,0.5087687792940189
+asian precision_macro,0.5319816489158322
+asian precision_weighted,0.6392774708891201
+asian recall_macro,0.5087687792940189
+asian recall_weighted,0.6060517893511783
+asian f1_macro,0.49271431851936814
+asian f1_weighted,0.6047564165521009
+asian cohen_kappa,0.5032756687267727
+asian matthews corrcoef,0.5079682753798327

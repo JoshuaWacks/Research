@@ -1,0 +1,11 @@
+Metric,Overall,Male,Female
+accuracy,0.559,0.547,0.431
+balanced_accuracy,0.515,0.547,0.431
+precision_macro,0.566,0.167,0.2
+precision_weighted,0.558,1.0,1.0
+recall_macro,0.515,0.091,0.086
+recall_weighted,0.559,0.547,0.431
+f1_macro,0.534,0.118,0.12
+f1_weighted,0.557,0.707,0.602
+cohen_kappa,0.456,0.0,0.0
+matt_corr,0.456,0.0,0.0

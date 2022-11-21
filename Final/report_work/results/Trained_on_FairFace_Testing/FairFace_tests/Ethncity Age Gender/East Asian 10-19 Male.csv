@@ -1,0 +1,10 @@
+East Asian 10-19 Male accuracy,0.38823529411764707
+East Asian 10-19 Male balanced_accuracy,0.38823529411764707
+East Asian 10-19 Male precision_macro,0.3333333333333333
+East Asian 10-19 Male precision_weighted,1.0
+East Asian 10-19 Male recall_macro,0.12941176470588237
+East Asian 10-19 Male recall_weighted,0.38823529411764707
+East Asian 10-19 Male f1_macro,0.18644067796610173
+East Asian 10-19 Male f1_weighted,0.5593220338983051
+East Asian 10-19 Male cohen_kappa,0.0
+East Asian 10-19 Male matthews corrcoef,0.0

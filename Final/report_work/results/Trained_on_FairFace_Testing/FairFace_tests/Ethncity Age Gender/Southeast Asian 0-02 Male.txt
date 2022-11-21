@@ -1,0 +1,18 @@
++----------------------------------------------+----------------------------+
+| Metric                                       | Result                     |
++----------------------------------------------+----------------------------+
+| Southeast Asian 0-02 Male accuracy           | 0.8846153846153846         |
+| Southeast Asian 0-02 Male balanced_accuracy  | 0.8846153846153846         |
+| __________________________                   | __________________________ |
+| Southeast Asian 0-02 Male precision_macro    | 0.3333333333333333         |
+| Southeast Asian 0-02 Male precision_weighted | 1.0                        |
+| __________________________                   | __________________________ |
+| Southeast Asian 0-02 Male recall_macro       | 0.2948717948717949         |
+| Southeast Asian 0-02 Male recall_weighted    | 0.8846153846153846         |
+| __________________________                   | __________________________ |
+| Southeast Asian 0-02 Male f1_macro           | 0.31292517006802717        |
+| Southeast Asian 0-02 Male f1_weighted        | 0.9387755102040816         |
+| __________________________                   | __________________________ |
+| Southeast Asian 0-02 Male cohen_kappa        | 0.0                        |
+| Southeast Asian 0-02 Male matthews corrcoef  | 0.0                        |
++----------------------------------------------+----------------------------+

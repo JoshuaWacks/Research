@@ -1,0 +1,18 @@
++----------------------------------------+----------------------------+
+| Metric                                 | Result                     |
++----------------------------------------+----------------------------+
+| Middle Eastern Male accuracy           | 0.5429906542056074         |
+| Middle Eastern Male balanced_accuracy  | 0.45806328979725713        |
+| __________________________             | __________________________ |
+| Middle Eastern Male precision_macro    | 0.6077474035374535         |
+| Middle Eastern Male precision_weighted | 0.5478213724500687         |
+| __________________________             | __________________________ |
+| Middle Eastern Male recall_macro       | 0.45806328979725713        |
+| Middle Eastern Male recall_weighted    | 0.5429906542056074         |
+| __________________________             | __________________________ |
+| Middle Eastern Male f1_macro           | 0.4941388671282426         |
+| Middle Eastern Male f1_weighted        | 0.5328925146204953         |
+| __________________________             | __________________________ |
+| Middle Eastern Male cohen_kappa        | 0.42673358773858716        |
+| Middle Eastern Male matthews corrcoef  | 0.43029930403479255        |
++----------------------------------------+----------------------------+

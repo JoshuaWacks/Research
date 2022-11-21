@@ -1,0 +1,11 @@
+Metric,Overall,white,black,indian,asian
+accuracy,0.508,0.486,0.46,0.55,0.585
+balanced_accuracy,0.472,0.492,0.437,0.475,0.481
+precision_macro,0.533,0.551,0.491,0.589,0.505
+precision_weighted,0.522,0.514,0.476,0.596,0.637
+recall_macro,0.472,0.492,0.437,0.475,0.481
+recall_weighted,0.508,0.486,0.46,0.55,0.585
+f1_macro,0.481,0.498,0.425,0.487,0.468
+f1_weighted,0.502,0.478,0.452,0.553,0.6
+cohen_kappa,0.406,0.402,0.275,0.436,0.486
+matt_corr,0.408,0.406,0.278,0.441,0.489

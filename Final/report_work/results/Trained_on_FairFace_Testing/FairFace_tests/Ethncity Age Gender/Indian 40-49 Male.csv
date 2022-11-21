@@ -1,0 +1,10 @@
+Indian 40-49 Male accuracy,0.46621621621621623
+Indian 40-49 Male balanced_accuracy,0.46621621621621623
+Indian 40-49 Male precision_macro,0.25
+Indian 40-49 Male precision_weighted,1.0
+Indian 40-49 Male recall_macro,0.11655405405405406
+Indian 40-49 Male recall_weighted,0.46621621621621623
+Indian 40-49 Male f1_macro,0.15898617511520738
+Indian 40-49 Male f1_weighted,0.6359447004608295
+Indian 40-49 Male cohen_kappa,0.0
+Indian 40-49 Male matthews corrcoef,0.0

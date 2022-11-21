@@ -1,0 +1,10 @@
+White 0-02 accuracy,0.6833333333333333
+White 0-02 balanced_accuracy,0.6833333333333333
+White 0-02 precision_macro,0.3333333333333333
+White 0-02 precision_weighted,1.0
+White 0-02 recall_macro,0.22777777777777777
+White 0-02 recall_weighted,0.6833333333333333
+White 0-02 f1_macro,0.2706270627062706
+White 0-02 f1_weighted,0.8118811881188119
+White 0-02 cohen_kappa,0.0
+White 0-02 matthews corrcoef,0.0

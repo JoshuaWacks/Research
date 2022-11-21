@@ -1,0 +1,18 @@
++----------------------------------------------+----------------------------+
+| Metric                                       | Result                     |
++----------------------------------------------+----------------------------+
+| White more_than_70 Female accuracy           | 0.4666666666666667         |
+| White more_than_70 Female balanced_accuracy  | 0.4666666666666667         |
+| __________________________                   | __________________________ |
+| White more_than_70 Female precision_macro    | 0.3333333333333333         |
+| White more_than_70 Female precision_weighted | 1.0                        |
+| __________________________                   | __________________________ |
+| White more_than_70 Female recall_macro       | 0.15555555555555556        |
+| White more_than_70 Female recall_weighted    | 0.4666666666666667         |
+| __________________________                   | __________________________ |
+| White more_than_70 Female f1_macro           | 0.21212121212121213        |
+| White more_than_70 Female f1_weighted        | 0.6363636363636364         |
+| __________________________                   | __________________________ |
+| White more_than_70 Female cohen_kappa        | 0.0                        |
+| White more_than_70 Female matthews corrcoef  | 0.0                        |
++----------------------------------------------+----------------------------+

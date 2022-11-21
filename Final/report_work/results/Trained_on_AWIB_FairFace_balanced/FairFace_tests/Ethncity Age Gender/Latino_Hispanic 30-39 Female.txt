@@ -1,0 +1,18 @@
++-------------------------------------------------+----------------------------+
+| Metric                                          | Result                     |
++-------------------------------------------------+----------------------------+
+| Latino_Hispanic 30-39 Female accuracy           | 0.5627705627705628         |
+| Latino_Hispanic 30-39 Female balanced_accuracy  | 0.5627705627705628         |
+| __________________________                      | __________________________ |
+| Latino_Hispanic 30-39 Female precision_macro    | 0.2                        |
+| Latino_Hispanic 30-39 Female precision_weighted | 1.0                        |
+| __________________________                      | __________________________ |
+| Latino_Hispanic 30-39 Female recall_macro       | 0.11255411255411256        |
+| Latino_Hispanic 30-39 Female recall_weighted    | 0.5627705627705628         |
+| __________________________                      | __________________________ |
+| Latino_Hispanic 30-39 Female f1_macro           | 0.1440443213296399         |
+| Latino_Hispanic 30-39 Female f1_weighted        | 0.7202216066481995         |
+| __________________________                      | __________________________ |
+| Latino_Hispanic 30-39 Female cohen_kappa        | 0.0                        |
+| Latino_Hispanic 30-39 Female matthews corrcoef  | 0.0                        |
++-------------------------------------------------+----------------------------+

@@ -1,0 +1,18 @@
++-------------------------------------------------+----------------------------+
+| Metric                                          | Result                     |
++-------------------------------------------------+----------------------------+
+| Southeast Asian 10-19 Female accuracy           | 0.518796992481203          |
+| Southeast Asian 10-19 Female balanced_accuracy  | 0.518796992481203          |
+| __________________________                      | __________________________ |
+| Southeast Asian 10-19 Female precision_macro    | 0.25                       |
+| Southeast Asian 10-19 Female precision_weighted | 1.0                        |
+| __________________________                      | __________________________ |
+| Southeast Asian 10-19 Female recall_macro       | 0.12969924812030076        |
+| Southeast Asian 10-19 Female recall_weighted    | 0.518796992481203          |
+| __________________________                      | __________________________ |
+| Southeast Asian 10-19 Female f1_macro           | 0.1707920792079208         |
+| Southeast Asian 10-19 Female f1_weighted        | 0.6831683168316832         |
+| __________________________                      | __________________________ |
+| Southeast Asian 10-19 Female cohen_kappa        | 0.0                        |
+| Southeast Asian 10-19 Female matthews corrcoef  | 0.0                        |
++-------------------------------------------------+----------------------------+
