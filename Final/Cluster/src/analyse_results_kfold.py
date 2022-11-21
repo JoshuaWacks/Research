@@ -20,22 +20,22 @@ from prettytable import PrettyTable
 
 ##########################################################---IMPORTS---############################################################################
 
-training_dataset = 'FairFace_Balanced_Age' 
+val_dataset = 'FairFace_AWIB_Only' 
 testing_dataset = 'FairFace_Balanced_Age'
 
-training_dataset_path = os.path.join('~/Datasets/FairFace_Balanced_Age',training_dataset)#I made an error when moving files and this dataset is in a folder when the same name
+val_dataset_path = os.path.join('~/Datasets',val_dataset)#I made an error when moving files and this dataset is in a folder when the same name
 testing_dataset_path = os.path.join('~/Datasets/FairFace_Balanced_Age',testing_dataset)
 
-training_csv_path = '~/processed_data/FairFace_train_val.csv'
+val_csv_path = '~/processed_data/FairFace_train_val.csv'
 testing_csv_path = '~/processed_data/FairFace_test.csv'
 
-model_name= 'ResNet34_Best_Weights'
+model_name= 'ResNet34_v1'
 weights_file = F'{model_name}.pt'
-model_path = os.path.join(os.path.join('~/Models',training_dataset),weights_file)
+model_path = os.path.join(os.path.join('~/Models',val_dataset),weights_file)
 
 results_file = F'results_{model_name}.csv'
 
-output_folder = os.path.expanduser(F'~/output/FairFace_Balanced_Age_Results/{model_name}')
+output_folder = os.path.expanduser(F'~/output/FairFace_AWIB_Only_Results/{model_name}')
 csv_results_output_path = os.path.join(output_folder,'results.csv')
 
 if (not os.path.exists(output_folder)):
@@ -48,7 +48,7 @@ if (not os.path.exists(csv_results_output_path)):
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
-# Data augmentation and normalization for training
+# Data augmentation and normalization for val
 # Just normalization for validation
 mean = np.array([0.485, 0.456, 0.406])
 std = np.array([0.229, 0.224, 0.225])
@@ -76,161 +76,6 @@ data_transforms = {
 
 ##########################################################---Glabal Variables---######################################################################
 
-def analyse_data(dataset,split):
-	FairFace_df = dataset
- 
-	race_groups = ['Asian','Black','Indian','White']
-	race_counts = FairFace_df.race.value_counts().reset_index(name = "count").rename(columns={"index":"race"})
-	age_counts = FairFace_df.age.value_counts().reset_index(name = "count").rename(columns={"index":"age"})
-	age_counts.sort_values('age',inplace= True)
-
-	gender_counts = FairFace_df.gender.value_counts().reset_index(name = "count").rename(columns={"index":"gender"})
-
-	fig, axs = plt.subplots(1, 3, figsize=(25, 10))
-	ax = axs.ravel()
-
-	sns.barplot(x = race_counts.iloc[:, 0], y = race_counts.iloc[:, 1],ax=ax[0])
-	ax[0].set_title(F"Total Counts of Ethnicities in {split} Data")
-
-
-	sns.barplot(x = age_counts.iloc[:, 0], y = age_counts.iloc[:, 1],ax=ax[1])
-	ax[1].set_title(F"Total Counts of Age in {split} Data")
-
-
-	sns.barplot(x = gender_counts.iloc[:, 0], y = gender_counts.iloc[:, 1],ax=ax[2])
-	ax[2].set_title(F"Total Counts of Gender in {split} Data")
- 
-	current_directory_path = os.getcwd()
-	subfolder_path = os.path.join(current_directory_path, output_folder)
-	file_path = os.path.join(subfolder_path, F'{split}_Wide_Distribution.png')
-	plt.savefig(file_path)
-
-	plt.show()
-#Done training wide data
-
-	age_spread = FairFace_df.groupby('race').age.value_counts().reset_index(name = 'counts')
-	age_spread.sort_values('age',inplace= True)
-
-	fig, axs = plt.subplots(1, 4, figsize=(25, 10))
-	ax = axs.ravel()
-
-	# fig.tight_layout()
-
-	for i,race in enumerate(race_groups):
-		t = age_spread[(age_spread.race == race)]
-		sns.barplot(x = t['age'], y = t['counts'], ax = ax[i])
-		ax[i].set_title(F"{race} Ethnicity")
-  
-	current_directory_path = os.getcwd()
-	subfolder_path = os.path.join(current_directory_path, output_folder)
-	file_path = os.path.join(subfolder_path, F'{split}_Ethnicity_Age_Distribution.png')
-	plt.savefig(file_path)
-	
-	gender_spread = FairFace_df.groupby('race').gender.value_counts().reset_index(name = 'counts')
-
-	fig, axs = plt.subplots(1, 4, figsize=(25, 10))
-	ax = axs.ravel()
-
-	# fig.tight_layout()
-
-	for i,race in enumerate(race_groups):
-		t = gender_spread[(gender_spread.race == race)]
-		sns.barplot(x = t['gender'], y = t['counts'], ax = ax[i])
-		ax[i].set_title(F"{race} Ethnicity")
-	  
-	current_directory_path = os.getcwd()
-	subfolder_path = os.path.join(current_directory_path, output_folder)
-	file_path = os.path.join(subfolder_path, F'{split}_Ethnicity_Gender_Distribution.png')
-	plt.savefig(file_path)
-	
-
-	plt.show()
-		
-##########################################################---Analyse Data---######################################################################
-	
-def save_training_graphs():
-	results_path = os.path.join(os.path.join('~/Results',training_dataset),results_file)
-	results_df = pd.read_csv(results_path)
-	# results_df['train_acc'] = results_df['train_acc'].astype(str).str[7:13]
-	# results_df['val_acc'] = results_df['val_acc'].astype(str).str[7:13]
- 
-	plt.figure(figsize=(15,10))
-	_ = sns.lineplot(data = results_df, x = 'epoch', y = 'train_loss')
-	plt.title(F'Train loss over the {training_dataset} dataset vs epoch')
-	plt.show()
-
-	current_directory_path = os.getcwd()
-	# subfolder_path = os.path.join(current_directory_path, output_folder)
-	file_path = os.path.join(output_folder, 'Training_Loss.png')
-	plt.savefig(file_path)
-	plt.clf()
- 
-	_ = sns.lineplot(data = results_df, x = 'epoch', y = 'val_loss')
-	plt.title(F'Val loss over the {training_dataset} dataset vs epoch')
-	plt.show()
- 
-	current_directory_path = os.getcwd()
-	# subfolder_path = os.path.join(current_directory_path, output_folder)
-	file_path = os.path.join(output_folder, 'Validation_Loss.png')
-	plt.savefig(file_path)
-	plt.clf()
- 
-
-	plot = sns.lineplot(data = results_df, x = 'epoch', y = 'train_acc')
-	# plot.invert_yaxis()
-	# plot.set(yticklabels=[])
-	plt.title(F'Training Accuracy over the {training_dataset} dataset vs epoch')
-	plt.show()
-
-	current_directory_path = os.getcwd()
-	# subfolder_path = os.path.join(current_directory_path, output_folder)
-	file_path = os.path.join(output_folder, 'Training_Accuracy.png')
-	plt.savefig(file_path)
-	plt.clf()
-
-	plot = sns.lineplot(data = results_df, x = 'epoch', y = 'val_acc')
-	# plot.invert_yaxis()
-	# plot.set(yticklabels=[])
-	plt.title(F'Validation Accuracy over the {training_dataset} dataset vs epoch')
-	plt.show()
-	
-	current_directory_path = os.getcwd()
-	# subfolder_path = os.path.join(current_directory_path, output_folder)
-	file_path = os.path.join(output_folder, 'Validation_Accuracy.png')
-	plt.savefig(file_path)
-	plt.clf()
-
-	t = sns.lineplot(x = results_df.epoch,y = results_df.train_loss,color = 'blue')
-	v = sns.lineplot(x = results_df.epoch,y = results_df.val_loss,color = 'green')
-	green_patch = matplotlib.patches.Patch(color='g', label='Validation')
-	blue_patch = matplotlib.patches.Patch(color='b', label='Training')
-	plt.title(F'Loss vs epoch')
-	plt.legend(handles=[green_patch,blue_patch])
-
-	current_directory_path = os.getcwd()
-	# subfolder_path = os.path.join(current_directory_path, output_folder)
-	file_path = os.path.join(output_folder, 'Overall_Loss.png')
-	plt.savefig(file_path)
-	plt.clf()
- 
-	t = sns.lineplot(x = results_df.epoch,y = results_df.train_acc,color = 'blue')
-	v = sns.lineplot(x = results_df.epoch,y = results_df.val_acc,color = 'green')
-	green_patch = matplotlib.patches.Patch(color='g', label='Validation')
-	blue_patch = matplotlib.patches.Patch(color='b', label='Training')
-	plt.title(F'Accuracy vs epoch')
-	plt.legend(handles=[green_patch,blue_patch])
- 
-	# plot.invert_yaxis()
-	# plot.set(yticklabels=[])
-	current_directory_path = os.getcwd()
-	# subfolder_path = os.path.join(current_directory_path, output_folder)
-	file_path = os.path.join(output_folder, 'Overall_Accuracy.png')
-	plt.savefig(file_path)
-	plt.clf()
- 
- 
-##########################################################---Training Graphs---######################################################################
-
 def load_checkpoint(model, optimizer, load_path):
 	if torch.cuda.is_available():
 		
@@ -245,20 +90,21 @@ def load_checkpoint(model, optimizer, load_path):
 	return model, optimizer, epoch
 
 def get_model_data():
-	image_datasets_validation = {x: datasets.ImageFolder(os.path.join(training_dataset_path, x),
+	image_datasets_validation = {x: datasets.ImageFolder(os.path.join(val_dataset_path, x),
 											data_transforms[x])
 					for x in ['val']}
 	dataloaders_validation = {x: torch.utils.data.DataLoader(image_datasets_validation[x], batch_size=4,
 												shuffle=True, num_workers=4)
 				for x in ['val']}	
  
-	image_datasets_testing = {x: datasets.ImageFolder(os.path.join(testing_dataset_path, x),
-											data_transforms[x])
-					for x in ['test']}
-	dataloaders_testing = {x: torch.utils.data.DataLoader(image_datasets_testing[x], batch_size=4,
-												shuffle=True, num_workers=4)
-				for x in ['test']}
-
+	# image_datasets_testing = {x: datasets.ImageFolder(os.path.join(testing_dataset_path, x),
+	# 										data_transforms[x])
+	# 				for x in ['test']}
+	# dataloaders_testing = {x: torch.utils.data.DataLoader(image_datasets_testing[x], batch_size=4,
+	# 											shuffle=True, num_workers=4)
+	# 			for x in ['test']}
+	image_datasets_testing = None
+	dataloaders_testing = None
  
 	class_names = image_datasets_validation['val'].classes
  
@@ -282,6 +128,7 @@ def get_predictions(model,data,data_name,one_off = False):
 	predictions = []
 	true_labels = []
 	
+	index = 0
 	for inputs, labels in data[data_name]:
 		inputs = inputs.to(device)
 		labels = labels.to(device)
@@ -304,8 +151,12 @@ def get_predictions(model,data,data_name,one_off = False):
 					
 			else:
 				predictions.append(pred)
+		print(index)
+		index = index +1
 			
 	return true_labels,predictions
+	
+##########################################################---Loading In File Data and Model Data---######################################################################
 	
 	 
 def write_results(true,predicted,field):
@@ -414,8 +265,8 @@ def obtain_overall_results(model,dataloaders_validation,dataloaders_testing):
 	true_labels_validation,predictions_validation = get_predictions(model,dataloaders_validation,'val',one_off=False)
 	true_labels_testing,predictions_testing = get_predictions(model,dataloaders_testing,'test',one_off=False)
  
-	true_labels_validation_one_off,predictions_validation_one_off = get_predictions(model,dataloaders_validation,'val',one_off=True)
-	true_labels_testing_one_off,predictions_testing_one_off = get_predictions(model,dataloaders_testing,'test',one_off=True)
+	# true_labels_validation_one_off,predictions_validation_one_off = get_predictions(model,dataloaders_validation,'val',one_off=True)
+	# true_labels_testing_one_off,predictions_testing_one_off = get_predictions(model,dataloaders_testing,'test',one_off=True)
 	
  
 	with open(os.path.expanduser(csv_results_output_path),'w') as csvfile:
@@ -429,11 +280,11 @@ def obtain_overall_results(model,dataloaders_validation,dataloaders_testing):
 	write_results(true_labels_testing,predictions_testing,"Testing")
 	get_confusion(true_labels_testing,predictions_testing,"Testing")
  
-	write_results(true_labels_validation_one_off,predictions_validation_one_off,"Validation_One_Off")
-	get_confusion(true_labels_validation_one_off,predictions_validation_one_off,"Validation_One_Off")
+	# write_results(true_labels_validation_one_off,predictions_validation_one_off,"Validation_One_Off")
+	# get_confusion(true_labels_validation_one_off,predictions_validation_one_off,"Validation_One_Off")
  
-	write_results(true_labels_testing_one_off,predictions_testing_one_off,"Testing_One_Off")
-	get_confusion(true_labels_testing_one_off,predictions_testing_one_off,"Testing_One_Off")
+	# write_results(true_labels_testing_one_off,predictions_testing_one_off,"Testing_One_Off")
+	# get_confusion(true_labels_testing_one_off,predictions_testing_one_off,"Testing_One_Off")
  
 	
 def get_pred(model,file):
@@ -503,16 +354,16 @@ def obtain_ethnicity_results(model,class_names):
 		write_results(true_labels[eth],predictions_one_off[eth],F"Testing_{eth}_One_Off")
 		get_confusion(true_labels[eth],predictions_one_off[eth],F"Testing_{eth}_One_Off")
   
-# FairFace_df = pd.read_csv(training_csv_path)
+# FairFace_df = pd.read_csv(val_csv_path)
 # FairFace_df = FairFace_df[FairFace_df['split'] == 'train']
-# analyse_data(FairFace_df,'Training')
+# analyse_data(FairFace_df,'val')
 
 # FairFace_testing_df = pd.read_csv(testing_csv_path)
 # analyse_data(FairFace_testing_df,'Testing')
 
-# save_training_graphs()
+# save_val_graphs()
 
 model,dataloaders_validation,dataloaders_testing,class_names = get_model_data()
 print('Running Analysis')
 obtain_overall_results(model,dataloaders_validation,dataloaders_testing)
-obtain_ethnicity_results(model,class_names)
+# obtain_ethnicity_results(model,class_names)

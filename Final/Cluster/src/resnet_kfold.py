@@ -1,5 +1,4 @@
 from __future__ import print_function, division
-
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -9,24 +8,27 @@ import numpy as np
 import torchvision
 from torchvision import datasets, models, transforms
 from sklearn.model_selection import KFold
+import pandas as pd
 
 import time
 import os
 import copy
 import csv
-#TODO make a csv file for the models hyperparameters
 
 cudnn.benchmark = True
 ##########################################################---IMPORTS---############################################################################
 
 load_presaved_model = True
 
-dataset = 'FairFace'
+dataset = 'FairFace_AWIB_Equal'
 
-data_dir = os.path.join('~/Datasets',dataset)
-# data_dir = 'Z:\RR\Final\Datasets\FairFace'
+data_dir = 'Z:\RR\Final\Datasets\FairFace_AWIB_Equal'
+fold_dir = 'Z:\RR\Final\Datasets\FairFace_AWIB_Equal\FairFace_AWIB_Equal'
+# data_dir = 'Z:\RR\Final\Datasets\FairFace_All_Races'
 
-model_name = F'ResNet34_v1'#Alpha: 1e_3, Step_size: 100, before we decrease alpha
+fold = 1
+#v8 and onwards is the FairFace testing batch
+model_name = F'ResNet34_v15_{fold}'#Alpha: 1e_3, Step_size: 100, before we decrease alpha
 
 model_save_path = os.path.join(os.path.join('~/Models',dataset),model_name + '.pt')
 
@@ -34,22 +36,24 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 best_acc = 0.0
 	
-pre_processing = 'RandomResizedCrop_RandomHorizontalFlip'
+pre_processing = 'Resized_RandomHorizontalFlip'
 
 k_folds = 5
-
-batch_size = 32
-num_workers = 4
+batch_size = 128
+num_workers = 8
+optimizer = "Adam"
 
 lr = 0.001
 momentum= 0.9
 
-step_size=50
+step_size=15
 gamma=0.05
 
 max_epochs = 200
-patience = 15
+patience = 10
 min_delta = 0
+
+image_size = 224
 
 ##########################################################---Hyper-parameters---############################################################################
 
@@ -60,18 +64,19 @@ std = np.array([0.229, 0.224, 0.225])
 data_transforms = {
 	'train': transforms.Compose([ #compose several transforms together
 		# transforms.RandomResizedCrop(224),
-		transforms.Resize(256),
+		transforms.Resize(image_size),
 		transforms.RandomHorizontalFlip(),
 		transforms.ToTensor()
 		# transforms.Normalize(mean, std)
 	]),
 	'val': transforms.Compose([
-		transforms.Resize(256),
+		transforms.Resize(image_size),
 		# transforms.CenterCrop(224),
 		transforms.ToTensor(),
 		# transforms.Normalize(mean, std) # normalize an image with mean and std
 	]),
 }
+
 ##########################################################---Glabal Variables---######################################################################
 class EarlyStopping():
 	def __init__(self):
@@ -82,19 +87,26 @@ class EarlyStopping():
 		self.early_stop = False
 		self.val_loss = 0
 		self.train_loss = 0
+		self.val_losses = []
   
 	def set_train_loss(self,t_loss):
 		self.train_loss = t_loss
   
 	def set_val_loss(self,v_loss):
 		self.val_loss = v_loss
+		self.val_losses.append(v_loss)
 
 	def check_early_stop(self):
 		if (self.val_loss - self.train_loss) > self.min_delta:
-			self.counter +=1
-			print(F'Encountered an early stopping criteria \nTrain Loss:{self.train_loss}\nVal Loss:{self.val_loss}\n')
+			if len(self.val_losses) > 1 and self.val_losses[-1] > self.val_losses[-2]:
+
+				self.counter +=1
+				print(F'Encountered an early stopping criteria \nTrain Loss:{self.train_loss}\nVal Loss:{self.val_loss}\n')
 			if self.counter >= self.patience:  
 				self.early_stop = True
+		else:
+			self.counter = 0
+			
 
 def save_checkpoint(model, optimizer, save_path, epoch):
 	torch.save({
@@ -117,18 +129,30 @@ def load_checkpoint(model, optimizer, load_path):
 	return model, optimizer, epoch
 
 def write_hyperparameters():
-	path = F'~/Results/{dataset}/hyperparameters/{model_name}.csv'
+	path = F'~/Results/{dataset}/hyperparameters_{model_name}.csv'
  
 	with open(os.path.expanduser(path),'a') as csvfile:
-		fieldnames = ['k_folds','pre_processing','batch_size','num_workers','lr','momentum','step_size','gamma','max_epochs','patience','min_delta']
+		fieldnames = ['training_dataset','Optimizer','image_size','k_folds','fold','pre_processing','batch_size','num_workers','lr','momentum','step_size','gamma','max_epochs','patience','min_delta']
 		writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 		writer.writeheader()
-		writer.writerow({'pre_processing':pre_processing,'batch_size':batch_size,'num_workers':num_workers,
+		writer.writerow({'training_dataset':dataset,'Optimizer':optimizer,'image_size':image_size,'k_folds':k_folds,'fold':fold,'pre_processing':pre_processing,'batch_size':batch_size,'num_workers':num_workers,
 				   'lr':lr,'momentum':momentum,
 				   'step_size':step_size,'gamma':gamma,
 				   'max_epochs':max_epochs,'patience':patience,'min_delta':min_delta})
 
-def write_results(time_elapsed,training_loss,training_acc,validation_loss,validation_acc,fold,max_epochs):
+def write_step_results(training_loss,training_acc,validation_loss,validation_acc,fold):
+
+        path = F'~/Results/{dataset}/results_{model_name}.csv'
+
+        with open(os.path.expanduser(path),'a') as csvfile:
+                fieldnames = ['fold','epoch', 'train_loss','train_acc','val_loss','val_acc']
+                writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+                writer.writeheader()
+
+                for i in range(len(training_loss)):
+                        writer.writerow({'fold':fold,'epoch':i, 'train_loss':training_loss[i],'train_acc':training_acc[i].item(),'val_loss':validation_loss[i],'val_acc':validation_acc[i].item()})
+
+def write_results(time_elapsed,training_loss,training_acc,validation_loss,validation_acc,fold):
 	
 	path = F'~/Results/{dataset}/results_{model_name}.csv'
  
@@ -137,8 +161,8 @@ def write_results(time_elapsed,training_loss,training_acc,validation_loss,valida
 		writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 		writer.writeheader()
   
-		for i in range(max_epochs):
-			writer.writerow({'fold':fold,'epoch':i, 'train_loss':training_loss[i],'train_acc':training_acc[i].data[0],'val_loss':validation_loss[i],'val_acc':validation_acc[i].data[0]})
+		for i in range(len(training_loss)):
+			writer.writerow({'fold':fold,'epoch':i, 'train_loss':training_loss[i],'train_acc':training_acc[i].item(),'val_loss':validation_loss[i],'val_acc':validation_acc[i].item()})
    
 	path = F'~/Results/{dataset}/time_results_{model_name}.csv'
 
@@ -161,7 +185,7 @@ def reset_weights(m):
 			# print(f'Reset trainable parameters of layer = {layer}')
 			layer.reset_parameters()
    
-def train(model, criterion, optimizer, scheduler,train_loader,val_loader,dataset_sizes,start_epoch, num_epochs):
+def train(model, criterion, optimizer, scheduler,train_loader,val_loader,dataset_size_train,dataset_size_val, num_epochs,best_acc):
 	since = time.time()
 	early_stopping = EarlyStopping()
 
@@ -174,7 +198,7 @@ def train(model, criterion, optimizer, scheduler,train_loader,val_loader,dataset
 	validation_acc = []
 
 
-	for epoch in range(start_epoch,num_epochs):
+	for epoch in range(0,num_epochs):
 		print(f'Epoch {epoch}/{num_epochs - 1}')
 		print('-' * 10)
 
@@ -218,11 +242,15 @@ def train(model, criterion, optimizer, scheduler,train_loader,val_loader,dataset
 				running_corrects += torch.sum(preds == labels.data)
 			if phase == 'train':
 				scheduler.step()
-
-			epoch_loss = running_loss / dataset_sizes
-			epoch_acc = running_corrects.double() / dataset_sizes
+				epoch_loss = running_loss / dataset_size_train
+				epoch_acc = running_corrects.double() / dataset_size_train
+			else:
+				epoch_loss = running_loss / dataset_size_val
+				epoch_acc = running_corrects.double() / dataset_size_val
 
 			print(f'{phase} Loss: {epoch_loss:.4f} Acc: {epoch_acc:.4f}')
+			print('',flush=True,end = '')
+   
    
 			if phase == 'train':
 				training_loss.append(epoch_loss)
@@ -232,9 +260,10 @@ def train(model, criterion, optimizer, scheduler,train_loader,val_loader,dataset
 			else:
 				validation_loss.append(epoch_loss)
 				validation_acc.append(epoch_acc)
+				write_results(training_loss,training_acc,validation_loss,validation_acc,fold)
 	
 			save_checkpoint(model, optimizer, os.path.expanduser(model_save_path),epoch)
-
+		
 			if phase == 'val':
 				# deep copy the model
 				if epoch_acc > best_acc:
@@ -270,76 +299,84 @@ def get_modal(class_names):
  
 	return model
 
+def get_indices():
+	path = os.path.join(fold_dir,F"train_idx_{fold}.csv")
+	path = os.path.expanduser(path)
+	train_idx = np.genfromtxt(path,delimiter=',').astype(int)
+	
+	path = os.path.join(fold_dir,F"val_idx_{fold}.csv")
+	path = os.path.expanduser(path)
+	val_idx = np.genfromtxt(path,delimiter=',').astype(int)
+	
+	return train_idx,val_idx
 
-def k_fold( class_names,image_datasets,start_epoch, num_epochs,k_folds):
+
+def k_fold( class_names,image_datasets,train_idx,val_idx, max_epochs,best_acc):
 	  # K-fold Cross Validation model evaluation
 
-	folds = KFold(n_splits=k_folds, shuffle=True)
+	dataset= torch.utils.data.ConcatDataset([image_datasets['train']])
 
-	dataset= torch.utils.data.ConcatDataset([image_datasets['train'],image_datasets['val']])
+	print('------------fold no---------{}----------------------'.format(fold))
 
-	for fold,(train_idx,val_idx) in enumerate(folds.split(dataset)):
-		print('------------fold no---------{}----------------------'.format(fold))
 
-  
-		train_subsampler = torch.utils.data.SubsetRandomSampler(train_idx)
-		val_subsampler = torch.utils.data.SubsetRandomSampler(val_idx)
-		
-		train_loader = torch.utils.data.DataLoader(
-							dataset, 
-							batch_size=batch_size, sampler=train_subsampler)
-		val_loader = torch.utils.data.DataLoader(
-							dataset,
-							batch_size=batch_size, sampler=val_subsampler)
-		dataset_size = len(val_loader) * batch_size
-  
-		model = get_modal(class_names)
-		optimizer = optim.SGD(model.parameters(), lr=lr, momentum=momentum)
-		exp_lr_scheduler = lr_scheduler.StepLR(optimizer, step_size=step_size, gamma= gamma)
-		criterion = nn.CrossEntropyLoss()
-		model = model.to(device)
-  
-  
-		trained_model,time_elapsed,training_loss,training_acc,validation_loss,validation_acc = train(model, criterion, optimizer, exp_lr_scheduler,
-																					   train_loader,val_loader,dataset_size,
-																					   start_epoch, num_epochs)
+	train_subsampler = torch.utils.data.SubsetRandomSampler(train_idx)
+	val_subsampler = torch.utils.data.SubsetRandomSampler(val_idx)
+ 
+	print(F"Length of training indices {len(train_idx)}")
+	print(F"Length of val indices {len(val_idx)}")
 
-		write_results(time_elapsed,training_loss,training_acc,validation_loss,validation_acc,k_folds,num_epochs)
+
+	train_loader = torch.utils.data.DataLoader(
+						dataset, 
+						batch_size=batch_size,num_workers=num_workers, sampler=train_subsampler)
+	val_loader = torch.utils.data.DataLoader(
+						dataset,
+						batch_size=batch_size,num_workers=num_workers, sampler=val_subsampler)
+	dataset_size_train = len(train_loader) * batch_size
+	dataset_size_val = len(val_loader) * batch_size
+
+
+	model = get_modal(class_names)
+	optimizer = optim.Adam(model.parameters(), lr=lr)
+	exp_lr_scheduler = lr_scheduler.StepLR(optimizer, step_size=step_size, gamma= gamma)
+	criterion = nn.CrossEntropyLoss()
+	model = model.to(device)
   
-def init_training():
+  
+	trained_model,time_elapsed,training_loss,training_acc,validation_loss,validation_acc = train(model, criterion, optimizer, exp_lr_scheduler,
+																				   train_loader,val_loader,dataset_size_train,dataset_size_val,
+																				   max_epochs,best_acc)
+
+	write_results(time_elapsed,training_loss,training_acc,validation_loss,validation_acc,fold)
+  
+def init_training(best_acc):
+	print('Setting up Training')
 	path = F'~/Results/{dataset}/results_{model_name}.csv'
 	open(os.path.expanduser(path),'w+')
 	path = F'~/Results/{dataset}/time_results_{model_name}.csv'
 	open(os.path.expanduser(path),'w+')
 	path = F'~/Results/{dataset}/hyperparameters_{model_name}.csv'
 	open(os.path.expanduser(path),'w+')
-
-	#Ensuring the paths for saving modal progress are working
+	print('Done checking paths')
+	# Ensuring the paths for saving modal progress are working
+	write_hyperparameters()
 
 	image_datasets = {x: datasets.ImageFolder(os.path.join(data_dir, x),
 											data_transforms[x])
-					for x in ['train', 'val']}
+					for x in ['train']}
 
 	class_names = image_datasets['train'].classes
- 
- 
-	
-	starting_epoch = 0
-	# if load_presaved_model:
-	# 	model, optimizer, starting_epoch = load_checkpoint(model, optimizer, os.path.expanduser(model_save_path))
-	# else:
-	# 	open(os.path.expanduser(model_save_path),'w+')
-	write_hyperparameters()
+
 	
 	print('Training Started \n\n')
-	k_fold(class_names,
-			image_datasets,
-		 	starting_epoch,max_epochs,k_folds)
+ 
+	train_idx,val_idx = get_indices()
+	k_fold(class_names,image_datasets,train_idx,val_idx,max_epochs,best_acc)
  
    
 # if __name__ == '__main__':
 	
-
-init_training()
+print('',flush=True,end = '')
+init_training(best_acc)
 
 	##########################################################---Initializing Model---######################################################################

@@ -17,14 +17,14 @@ import csv
 cudnn.benchmark = True
 ##########################################################---IMPORTS---############################################################################
 
-load_presaved_model = True
+load_presaved_model = False
 chosen_model = 'ResNet34'
 
 dataset = 'FairFace_Balanced_Age'
 
 data_dir = os.path.join('~/Datasets/FairFace_Balanced_Age',dataset)
 
-model_name = F'ResNet34_Best_Weights'#Alpha: 1e_3, Step_size: 100, before we decrease alpha
+model_name = F'ResNet34_Best_Weights_patience_50'#Alpha: 1e_3, Step_size: 100, before we decrease alpha
 
 model_save_path = os.path.join(os.path.join('~/Models',dataset),model_name + '.pt')
 
@@ -42,7 +42,7 @@ step_size=50
 gamma=0.05
 
 num_epochs = 200
-patience = 15
+patience = 50
 min_delta = 0
 
 ##########################################################---Hyper-parameters---############################################################################
@@ -201,6 +201,7 @@ def train_model(model, criterion, optimizer, scheduler,dataloaders,dataset_sizes
 			epoch_acc = running_corrects.double() / dataset_sizes[phase]
 
 			print(f'{phase} Loss: {epoch_loss:.4f} Acc: {epoch_acc:.4f}')
+			print('',flush=True,end = '')
    
 			if phase == 'train':
 				training_loss.append(epoch_loss)
@@ -252,7 +253,7 @@ def write_results_drive(time_elapsed,training_loss,training_acc,validation_loss,
 		writer.writeheader()
   
 		for i in range(len(training_loss)):
-			writer.writerow({'epoch':i, 'train_loss':training_loss[i],'train_acc':training_acc[i],'val_loss':validation_loss[i],'val_acc':validation_acc[i]})
+			writer.writerow({'epoch':i, 'train_loss':training_loss[i],'train_acc':training_acc[i].item(),'val_loss':validation_loss[i],'val_acc':validation_acc[i].item()})
 
 	file_name = F'time_results_{model_name}.csv'
 	path = F'~/Results/FairFace_Balanced_Age/{file_name}'
